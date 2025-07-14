@@ -1,8 +1,19 @@
+
+/* ============================= */
+/*          BASE STYLES         */
+/* ============================= */
+
 * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+}
+
+/* ============================= */
+/*        RESET FOR PRINT       */
+/* ============================= */
 
 *,
 *:before,
@@ -20,6 +31,10 @@ li:first-line {
   text-shadow: none !important;
 }
 
+/* ============================= */
+/*     PAGE BREAK MANAGEMENT    */
+/* ============================= */
+
 table,
 blockquote,
 pre,
@@ -34,15 +49,6 @@ tr {
   page-break-inside: avoid;
 }
 
-h2,
-h3,
-h4,
-p,
-a {
-  orphans: 3;
-  widows: 3;
-}
-
 h1,
 h2,
 h3,
@@ -53,17 +59,30 @@ h6 {
   page-break-inside: avoid;
 }
 
-h1+p,
-h2+p,
-h3+p {
+h1 + p,
+h2 + p,
+h3 + p {
   page-break-before: avoid;
 }
 
+h2,
+h3,
+h4,
+p,
+a {
+  orphans: 3;
+  widows: 3;
+}
+
 img {
-  page-break-after: auto;
   page-break-before: auto;
+  page-break-after: auto;
   page-break-inside: avoid;
 }
+
+/* ============================= */
+/*       LINK AND TITLE INFO    */
+/* ============================= */
 
 a[href^='http']:after,
 a[href^='ftp']:after {
@@ -83,14 +102,18 @@ acronym[title]:after {
   content: " (" attr(title) ")";
 }
 
+/* ============================= */
+/*        MARGIN HANDLING       */
+/* ============================= */
+
 p,
 blockquote,
 table,
 ul,
 ol,
 dl {
-  margin-bottom: 1.5rem;
   margin-top: 0;
+  margin-bottom: 1.5rem;
 }
 
 p:last-child,
@@ -99,12 +122,12 @@ ol:last-child {
   margin-bottom: 0;
 }
 
-@page {
-  margin: 0
-}
+/* ============================= */
+/*         PAGE SIZES           */
+/* ============================= */
 
-body {
-  margin: 0
+@page {
+  margin: 0;
 }
 
 .sheet {
@@ -115,80 +138,38 @@ body {
   page-break-after: always;
 }
 
-body.A3 .sheet {
-  width: 297mm;
-  height: 419mm
-}
+/* Paper dimensions */
+body.A3 .sheet               { width: 297mm; height: 419mm; }
+body.A3.landscape .sheet     { width: 420mm; height: 296mm; }
 
-body.A3.landscape .sheet {
-  width: 420mm;
-  height: 296mm
-}
+body.A4 .sheet               { width: 210mm; height: 296mm; }
+body.A4.landscape .sheet     { width: 297mm; height: 209mm; }
 
-body.A4 .sheet {
-  width: 210mm;
-  height: 296mm
-}
+body.A5 .sheet               { width: 148mm; height: 209mm; }
+body.A5.landscape .sheet     { width: 210mm; height: 147mm; }
 
-body.A4.landscape .sheet {
-  width: 297mm;
-  height: 209mm
-}
+body.letter .sheet           { width: 216mm; height: 279mm; }
+body.letter.landscape .sheet { width: 280mm; height: 215mm; }
 
-body.A5 .sheet {
-  width: 148mm;
-  height: 209mm
-}
+body.legal .sheet            { width: 216mm; height: 356mm; }
+body.legal.landscape .sheet  { width: 357mm; height: 215mm; }
 
-body.A5.landscape .sheet {
-  width: 210mm;
-  height: 147mm
-}
+/* Padding helpers */
+.sheet.padding-10mm { padding: 10mm; }
+.sheet.padding-15mm { padding: 15mm; }
+.sheet.padding-20mm { padding: 20mm; }
+.sheet.padding-25mm { padding: 25mm; }
+.sheet.padding-50mm { padding: 50mm; }
 
-body.letter .sheet {
-  width: 216mm;
-  height: 279mm
-}
-
-body.letter.landscape .sheet {
-  width: 280mm;
-  height: 215mm
-}
-
-body.legal .sheet {
-  width: 216mm;
-  height: 356mm
-}
-
-body.legal.landscape .sheet {
-  width: 357mm;
-  height: 215mm
-}
-
-.sheet.padding-10mm {
-  padding: 10mm
-}
-
-.sheet.padding-15mm {
-  padding: 15mm
-}
-
-.sheet.padding-20mm {
-  padding: 20mm
-}
-
-.sheet.padding-25mm {
-  padding: 25mm
-}
-
-.sheet.padding-50mm {
-  padding: 50mm
-}
+/* ============================= */
+/*         MEDIA QUERIES        */
+/* ============================= */
 
 @media screen {
   body {
-    background: #e0e0e0
+    background: #e0e0e0;
   }
+
   .sheet {
     background: white;
     box-shadow: 0 .5mm 2mm rgba(0, 0, 0, .3);
@@ -197,40 +178,30 @@ body.legal.landscape .sheet {
 }
 
 @media print {
-  body.A3.landscape {
-    width: 420mm
-  }
+  body.A3.landscape         { width: 420mm; }
   body.A3,
-  body.A4.landscape {
-    width: 297mm
-  }
+  body.A4.landscape         { width: 297mm; }
   body.A4,
-  body.A5.landscape {
-    width: 210mm
-  }
-  body.A5 {
-    width: 148mm
-  }
+  body.A5.landscape         { width: 210mm; }
+  body.A5                   { width: 148mm; }
   body.letter,
-  body.legal {
-    width: 216mm
-  }
-  body.letter.landscape {
-    width: 280mm
-  }
-  body.legal.landscape {
-    width: 357mm
-  }
+  body.legal                { width: 216mm; }
+  body.letter.landscape     { width: 280mm; }
+  body.legal.landscape      { width: 357mm; }
 }
 
+/* ============================= */
+/*         UTILITY CLASSES      */
+/* ============================= */
+
 .page-break,
-.break-before,
-.page-break-before {
+.page-break-before,
+.break-before {
   page-break-before: always;
 }
 
-.break-after,
-.page-break-after {
+.page-break-after,
+.break-after {
   page-break-after: always;
 }
 
